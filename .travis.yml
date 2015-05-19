@@ -10,4 +10,4 @@ r_github_packages:
  - keboola/r-docker-application
 
 notifications:
-  slack: keboola:8EW7Y0Kqvxxames1Rfp6feaE
+  slack: keboola:eoqvo0RDzLRDPytuVEHRJNOc
