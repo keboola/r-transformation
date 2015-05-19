@@ -1,0 +1,5 @@
+.Rproj.user
+.Rhistory
+.RData
+/tests/data/01/out/tables/sample.csv
+/tests/config.R
