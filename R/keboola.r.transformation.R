@@ -34,7 +34,7 @@ RTransformation <- setRefClass(
                 # get only packages not yet installed
                 packagesToInstall <- packages[which(!(packages %in% rownames(installed.packages())))]
                 if (length(packagesToInstall) > 0) {
-                    silence(
+                    # silence(
                         install.packages(
                             pkgs = packagesToInstall, 
                             lib = workingDir, 
@@ -44,7 +44,7 @@ RTransformation <- setRefClass(
                             dependencies = c("Depends", "Imports", "LinkingTo"), 
                             INSTALL_opts = c("--no-html")
                         )
-                    )
+                   # )
                 }
                 # load all packages
                 lapply(packages, function (package) {
