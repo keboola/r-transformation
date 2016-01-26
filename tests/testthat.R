@@ -1,4 +1,5 @@
 library(testthat)
+Sys.setenv("R_TESTS" = "")
 
 KBC_DATA_DIR = '../data/'
 
