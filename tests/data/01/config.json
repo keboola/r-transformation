@@ -19,8 +19,8 @@
     },
     "parameters": {
         "packages": [
-            "ggplot2",
-            "tree"
+            "tree",
+            "leaps"
         ],
         "script": [
             "library(tree)",
