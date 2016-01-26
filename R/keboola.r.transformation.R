@@ -35,7 +35,7 @@ RTransformation <- setRefClass(
                 packagesToInstall <- packages[which(!(packages %in% rownames(installed.packages())))]
                 if (length(packagesToInstall) > 0) {
                     # silence(
-                        logInfo(paste0("Installing packages: "), paste(packagesToInstall, collapse = ', '))
+                        logInfo(paste0("Installing packages: ", paste(packagesToInstall, collapse = ', ')))
                         install.packages(
                             pkgs = packagesToInstall, 
                             lib = workingDir, 
