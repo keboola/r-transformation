@@ -25,8 +25,8 @@ RTransformation <- setRefClass(
             \\subsection{Parameters}{\\itemize{
             \\item{\\code{packages} Character vector of package names.}
             }}"            
-            con <- textConnection("installMessages", open = "w", local = TRUE)
-            sink(con, type = c("output", "message"))                
+           # con <- textConnection("installMessages", open = "w", local = TRUE)
+          #  sink(con, type = c("output", "message"))                
             if (!is.null(packages) && (length(packages) > 0)) {
                 # repository <- "http://cran.us.r-project.org"
                 # use the czech mirror to increase speed slightly
