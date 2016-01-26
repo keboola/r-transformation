@@ -96,7 +96,7 @@ RTransformation <- setRefClass(
             }
             dir.create(workingDir, recursive = TRUE)
             # make working dir also library dir so that parallel runs do not clash with each other
-           # .libPaths(c(.libPaths(), workingDir)) 
+           .libPaths(c(.libPaths(), workingDir)) 
             
             logInfo("Installing packages")
             # install packages            
