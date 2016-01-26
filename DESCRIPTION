@@ -6,9 +6,10 @@ Date: 2015-05-04
 Author: Ondrej Popelka
 Maintainer: Ondrej Popelka <ondrej.popelka@keboola.com>
 Depends:
-	methods,
-	keboola.r.docker.application
+    methods,
+    keboola.r.docker.application
 Suggests:
-	testthat
+    testthat
 Description: Runs KBC transformations written in R.
 License: MIT + file LICENSE
+RoxygenNote: 5.0.1

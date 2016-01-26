@@ -11,19 +11,20 @@ RTransformation <- setRefClass(
         scriptContent = 'character'
     ),
     methods = list(
-        #' Constructor.
-        #'
-        #' @param Optional name of data directory, if not supplied then it
-        #'  will be read from command line argument.
-        #' @exportMethod
         initialize = function(args = NULL) {
+            "Constructor.
+            \\subsection{Parameters}{\\itemize{
+            \\item{\\code{args} Optional name of data directory, if not supplied then it
+                will be read from command line argument.}
+            }}"            
            callSuper(args)
         },
         
-        #' Install and load all required libraries.
-        #' 
-        #' @param character vector of package names to install
         installModulePackages = function(packages = c()) {
+            "Install and load all required libraries.
+            \\subsection{Parameters}{\\itemize{
+            \\item{\\code{packages} Character vector of package names.}
+            }}"            
             con <- textConnection("installMessages", open = "w", local = TRUE)
             sink(con, type = c("output", "message"))                
             if (!is.null(packages) && (length(packages) > 0)) {
@@ -54,20 +55,19 @@ RTransformation <- setRefClass(
             logDebug(installMessages)
         },        
         
-        
-        #' Silence all but error output from a command.
-        #' 
-        #' Note: this function does nothing if the debugMode variable is set to TRUE.
-        #' @return Command return value.
         silence = function(command) {
+            "Silence all but error output from a command.
+            \\subsection{Parameters}{\\itemize{
+            \\item{\\code{command} Arbitrary command.}
+            }}
+            \\subsection{Return Value}{Command return value}"
             msg.trap <- capture.output(suppressPackageStartupMessages(suppressMessages(suppressWarnings(ret <- command))))
             ret
         },
 
-
-        #' Validate application configuration
-        #' @exportMethod
         validate = function() {
+            "Validate application configuration. 
+            \\subsection{Return Value}{TRUE}"
             scr <- configData$parameters$script
             if (length(scr) > 1)  {
                 scriptContent <<- paste(scr, collapse = "\n")
@@ -77,12 +77,12 @@ RTransformation <- setRefClass(
             if (empty(scriptContent)) {
                 stop("Transformation script seems to be empty.")
             }
+            TRUE
         },
 
-
-        #' Main application entry point
-        #' @exportMethod        
         run = function() {
+            "Main application entry point.
+            \\subsection{Return Value}{TRUE}"
             logInfo("Running R transformation")
             validate()
             workingDir <<- tempdir()
