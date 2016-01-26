@@ -41,8 +41,8 @@ RTransformation <- setRefClass(
                             lib = workingDir, 
                  
                                        repos = repository, 
-                            quiet = TRUE, 
-                            verbose = FALSE, 
+                         #   quiet = TRUE, 
+                          #  verbose = FALSE, 
                             dependencies = c("Depends", "Imports", "LinkingTo"), 
                             INSTALL_opts = c("--no-html")
                         )
@@ -96,7 +96,7 @@ RTransformation <- setRefClass(
             }
             dir.create(workingDir, recursive = TRUE)
             # make working dir also library dir so that parallel runs do not clash with each other
-            .libPaths(c(.libPaths(), workingDir)) 
+           # .libPaths(c(.libPaths(), workingDir)) 
             
             logInfo("Installing packages")
             # install packages            
