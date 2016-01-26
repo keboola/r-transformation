@@ -85,6 +85,7 @@ RTransformation <- setRefClass(
             \\subsection{Return Value}{TRUE}"
             logInfo("Running R transformation")
             validate()
+            logInfo(paste0("Clearing working directory: ", workingDir))
             workingDir <<- tempdir()
             if (file.exists(workingDir)) {
                 unlink(workingDir, recursive = TRUE)
@@ -93,12 +94,14 @@ RTransformation <- setRefClass(
             # make working dir also library dir so that parallel runs do not clash with each other
             .libPaths(c(.libPaths(), workingDir)) 
             
+            logInfo("Installing packages")
             # install packages            
             packages <- configData$parameters$packages
             installModulePackages(packages)
             
             # save the script to file
             scriptFile = file.path(dataDir, 'script.R')
+            logInfo(paste0("Creating script: "), scriptFile)
             write(file = scriptFile, x = scriptContent)
             # set data directory as current directory, so that relative paths in transformation work
             setwd(dataDir)
