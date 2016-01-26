@@ -1,7 +1,6 @@
 library(testthat)
 
-# default values
-DATA_DIR = 'tests/data'
+KBC_DATA_DIR = '../data/'
 
 # override with config if any
 if (file.exists("config.R")) {
@@ -9,8 +8,8 @@ if (file.exists("config.R")) {
 }
 
 # override with environment if any
-if (nchar(Sys.getenv("DATA_DIR")) > 0) {
-    DATA_DIR <- Sys.getenv("DATA_DIR")  
+if (nchar(Sys.getenv("KBC_DATA_DIR")) > 0) {
+    KBC_DATA_DIR <- Sys.getenv("KBC_DATA_DIR")  
 }
 
-test_check("keboola.r.transformation")
+test_check("keboola.r.docker.application")

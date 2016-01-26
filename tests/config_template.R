@@ -1,4 +1,2 @@
-# Path to dir with sample configuration
-DATA_DIR = '../data'
-
-
+# Path to dir with sample configuration (relative to testthat directory)
+KBC_DATA_DIR = '../data/'
