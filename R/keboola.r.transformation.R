@@ -35,6 +35,7 @@ RTransformation <- setRefClass(
                 packagesToInstall <- packages[which(!(packages %in% rownames(installed.packages())))]
                 if (length(packagesToInstall) > 0) {
                     # silence(
+                        logInfo(paste0("Installing packages: "), paste(packagesToInstall, collapse = ', '))
                         install.packages(
                             pkgs = packagesToInstall, 
                             lib = workingDir, 
@@ -48,10 +49,12 @@ RTransformation <- setRefClass(
                 }
                 # load all packages
                 lapply(packages, function (package) {
-                    silence(library(package, character.only = TRUE, quietly = TRUE))
+                    #silence(
+                        library(package, character.only = TRUE, quietly = TRUE)
+                    #)
                 })
             }
-            sink(NULL, type = c("output", "message"))
+#            sink(NULL, type = c("output", "message"))
             logDebug(installMessages)
         },        
         
