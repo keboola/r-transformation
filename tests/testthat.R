@@ -1,6 +1,9 @@
 library(testthat)
 Sys.setenv("R_TESTS" = "")
 
+# so that the tests pass on Travis 
+.libPaths(c(.libPaths(), KBC_DATA_DIR)) 
+
 KBC_DATA_DIR = '../data/'
 
 # override with config if any
