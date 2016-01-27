@@ -9,5 +9,8 @@ r_github_packages:
  - keboola/r-application
  - keboola/r-docker-application
 
+before_install:
+ - export KBC_DATA_DIR=$TRAVIS_BUILD_DIR/data/
+
 notifications:
   slack: keboola:eoqvo0RDzLRDPytuVEHRJNOc
