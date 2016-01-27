@@ -7,7 +7,7 @@ RTransformation <- setRefClass(
     'RTransformation',
     contains = c("DockerApplication"),
     fields = list(
-        workingDir = 'character',
+#        workingDir = 'character',
         scriptContent = 'character'
     ),
     methods = list(
@@ -38,7 +38,7 @@ RTransformation <- setRefClass(
                         logInfo(paste0("Installing packages: ", paste(packagesToInstall, collapse = ', ')))
                         install.packages(
                             pkgs = packagesToInstall, 
-                            lib = workingDir, 
+                       #     lib = workingDir, 
                  
                                        repos = repository, 
                          #   quiet = TRUE, 
@@ -50,9 +50,9 @@ RTransformation <- setRefClass(
                 }
                 # load all packages
                 lapply(packages, function (package) {
-                    #silence(
+                    silence(
                         library(package, character.only = TRUE, quietly = TRUE)
-                    #)
+                    )
                 })
             }
 #            sink(NULL, type = c("output", "message"))
@@ -89,12 +89,12 @@ RTransformation <- setRefClass(
             \\subsection{Return Value}{TRUE}"
             logInfo("Running R transformation")
             validate()
-            logInfo(paste0("Clearing working directory: ", workingDir))
-            workingDir <<- tempdir()
-            if (file.exists(workingDir)) {
-                unlink(workingDir, recursive = TRUE)
-            }
-            dir.create(workingDir, recursive = TRUE)
+            #logInfo(paste0("Clearing working directory: ", workingDir))
+            #workingDir <<- tempdir()
+            #if (file.exists(workingDir)) {
+           #     unlink(workingDir, recursive = TRUE)
+          #  }
+         #   dir.create(workingDir, recursive = TRUE)
             # make working dir also library dir so that parallel runs do not clash with each other
            #.libPaths(c(.libPaths(), workingDir)) 
             
