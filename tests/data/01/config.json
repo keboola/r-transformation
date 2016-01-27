@@ -19,7 +19,7 @@
     },
     "parameters": {
         "packages": [
-            "leaps"
+            "tree"
         ],
         "script": [
             "library(tree)",
