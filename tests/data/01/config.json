@@ -19,6 +19,7 @@
     },
     "parameters": {
         "packages": [
+            "leaps",
             "tree"
         ],
         "script": [
