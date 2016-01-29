@@ -1,0 +1,34 @@
+{
+    "storage": {
+        "input": {
+            "tables": {
+                "0": {
+                    "source": "in.c-main.data",
+                    "destination": "sample.csv"
+                }
+            }
+        },
+        "output": {
+            "tables": {
+                "0": {
+                    "source": "sample.csv",
+                    "destination": "out.c-main.data"
+                }
+            }
+        }
+    },
+    "parameters": {
+        "packages": [],
+        "tags": ["model", "pokus"],
+        "script": [
+            "file <- file.path('in', 'user', 'model')",
+            "model <- readChar(file, file.info(file)$size)",
+            "app$logInfo(paste0('Model:', model))",
+            "file <- file.path('in', 'user', 'pokus')",
+            "pokus <- readChar(file, file.info(file)$size)",
+            "app$logInfo(paste0('Pokus', pokus))",
+            "result <- as.numeric(model) + as.numeric(pokus)",
+            "write.csv(result, file = \"out/tables/sample.csv\", row.names = FALSE)"
+        ]
+    }
+}

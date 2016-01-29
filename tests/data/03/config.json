@@ -1,0 +1,26 @@
+{
+    "storage": {
+        "input": {
+            "tables": {
+                "0": {
+                    "source": "in.c-main.data",
+                    "destination": "sample.csv"
+                }
+            }
+        },
+        "output": {
+            "tables": {
+                "0": {
+                    "source": "sample.csv",
+                    "destination": "out.c-main.data"
+                }
+            }
+        }
+    },
+    "parameters": {
+        "packages": ["tree", "some-non-existent-package"],
+        "script": [
+            "library(tree)"
+        ]
+    }
+}

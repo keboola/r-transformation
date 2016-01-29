@@ -1,4 +1,4 @@
-test_that("validate", {
+test_that("basic run", {
     app <- RTransformation$new(file.path(KBC_DATA_DIR, '01'))
     app$readConfig()
     app$run()
@@ -9,4 +9,24 @@ test_that("validate", {
         data[['funkyNumber']]^3,
         data[['biggerFunky']]
     )
+})
+
+test_that("tagged files", {
+    app <- RTransformation$new(file.path(KBC_DATA_DIR, '02'))
+    app$readConfig()
+    app$run()
+    
+    expect_true(file.exists(file.path(KBC_DATA_DIR, '02', 'in', 'user', 'pokus')))
+    expect_true(file.exists(file.path(KBC_DATA_DIR, '02', 'in', 'user', 'model')))
+    data <- read.csv(file.path(KBC_DATA_DIR, '02', 'out', 'tables', 'sample.csv'))
+    expect_equal(
+        data[['funkyNumber']]^3,
+        data[['biggerFunky']]
+    )
+})
+
+test_that("package error", {
+    app <- RTransformation$new(file.path(KBC_DATA_DIR, '03'))
+    app$readConfig()
+    app$run()
 })
