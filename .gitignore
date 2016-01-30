@@ -3,3 +3,8 @@
 .RData
 /tests/data/01/out/tables/sample.csv
 /tests/config.R
+/tests/data/02/in/user
+/tests/data/01/script.R
+/tests/data/02/script.R
+/tests/data/03/script.R
+/tests/data/02/out/tables/sample.csv
