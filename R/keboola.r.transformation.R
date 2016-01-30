@@ -34,37 +34,47 @@ RTransformation <- setRefClass(
         installModulePackages = function() {
             "Install and load all required libraries.
             \\subsection{Return Value}{TRUE}"
+            # get only packages not yet installed
+            packagesToInstall <- .self$packages[which(!(.self$packages %in% rownames(installed.packages())))]
+          
             if (!interactive()) {
                 con <- textConnection("installMessages", open = "w", local = TRUE)
                 sink(con, type = c("output", "message"))
             }
-            if (!is.null(.self$packages) && (length(.self$packages) > 0)) {
-                # use the czech mirror to increase speed slightly
-                # get only packages not yet installed
-                packagesToInstall <- .self$packages[which(!(.self$packages %in% rownames(installed.packages())))]
-                if (length(packagesToInstall) > 0) {
-                    .self$logInfo(paste0("Installing packages: ", paste(packagesToInstall, collapse = ', ')))
-                    .self$silence(
-                        install.packages(
-                            pkgs = packagesToInstall, 
-                            quiet = TRUE, 
-                            verbose = FALSE, 
-                            dependencies = c("Depends", "Imports", "LinkingTo"), 
-                            INSTALL_opts = c("--no-html")
+            tryCatch({
+                if (!is.null(.self$packages) && (length(.self$packages) > 0)) {
+                    if (length(packagesToInstall) > 0) {
+                        # install.packages does not return a usefull error or exception in case a package cannot be
+                        # installed. It only emits a warning among a ton of other warnings.
+                        .self$silence(
+                            install.packages(
+                                pkgs = packagesToInstall, 
+                                quiet = TRUE, 
+                                verbose = FALSE, 
+                                dependencies = c("Depends", "Imports", "LinkingTo"), 
+                                INSTALL_opts = c("--no-html")
+                            )
                         )
-                    )
-                }
-                # load all packages
-                lapply(.self$packages, function (package) {
-                    if (!.self$silence(library(package, character.only = TRUE, quietly = TRUE, logical.return = TRUE))) {
-                        stop(paste0("Failed to load package: ", package))
+                        # so we again check for any packages which are left to be installed and if there are any
+                        # we assume that those packages failed to install.
+                        packagesToInstall <- .self$packages[which(!(.self$packages %in% rownames(installed.packages())))]
+                        if (length(packagesToInstall) > 0) {
+                            stop(paste0("Failed to install packages: ", paste(packagesToInstall, collapse = ", ")))
+                        }
                     }
-                })
-            }
-            if (!interactive()) {
-                sink(NULL, type = c("output", "message"))
-            }
-            .self$logDebug(installMessages)
+                    # load all packages
+                    lapply(.self$packages, function (package) {
+                        if (!.self$silence(library(package, character.only = TRUE, quietly = TRUE, logical.return = TRUE))) {
+                            stop(paste0("Failed to load package: ", package))
+                        }
+                    })
+                }
+            }, finally = {
+                if (!interactive()) {
+                    sink(NULL, type = c("output", "message"))
+                    .self$logDebug(installMessages)
+                }
+            })
         },        
         
         validate = function() {
@@ -113,7 +123,9 @@ RTransformation <- setRefClass(
             \\item{\\code{packages} Character vector of tag names.}
             }}
             \\subsection{Return value}{TRUE}"
-            dir.create(file.path(.self$dataDir, 'in', 'user'))
+            if (!dir.exists(file.path(.self$dataDir, 'in', 'user'))) {
+                dir.create(file.path(.self$dataDir, 'in', 'user'))
+            }
             inDirectory <- file.path(.self$dataDir, 'in', 'files')
             files <- list.files(inDirectory, pattern = '^.*\\.manifest$', full.names = FALSE)
             for (tag in .self$tags) {
@@ -152,11 +164,8 @@ RTransformation <- setRefClass(
             \\subsection{Return Value}{TRUE}"
             .self$logInfo("Initializing R transformation")
             .self$validate()
-            .self$prepareTaggedFiles()
-
-            # install packages            
-            .self$logDebug("Installing packages")
             .self$installModulePackages()
+            .self$prepareTaggedFiles()
             
             # save the script to file
             scriptFile = file.path(dataDir, 'script.R')

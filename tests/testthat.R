@@ -14,6 +14,11 @@ if (nchar(Sys.getenv("KBC_DATA_DIR")) > 0) {
 }
 
 # so that the tests pass on Travis 
-.libPaths(c(.libPaths(), KBC_DATA_DIR)) 
+.libPaths(c(.libPaths(), KBC_DATA_DIR))
+local({
+    r <- getOption("repos")
+    r["CRAN"] <- "http://cran.r-project.org" 
+    options(repos = r)
+})
 
 test_check("keboola.r.transformation")

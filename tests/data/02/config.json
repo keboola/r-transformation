@@ -23,10 +23,10 @@
         "script": [
             "file <- file.path('in', 'user', 'model')",
             "model <- readChar(file, file.info(file)$size)",
-            "app$logInfo(paste0('Model:', model))",
+            "print(paste0('Model:', model))",
             "file <- file.path('in', 'user', 'pokus')",
             "pokus <- readChar(file, file.info(file)$size)",
-            "app$logInfo(paste0('Pokus', pokus))",
+            "print(paste0('Pokus', pokus))",
             "result <- as.numeric(model) + as.numeric(pokus)",
             "write.csv(result, file = \"out/tables/sample.csv\", row.names = FALSE)"
         ]

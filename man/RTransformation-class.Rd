@@ -18,12 +18,17 @@ will be read from command line argument or environment KBC_DATA_DIR.}
 }}
 \subsection{Return Value}{Response body - either list or string in case the body cannot be parsed as JSON.}}
 
-\item{\code{installModulePackages(packages = c())}}{Install and load all required libraries.
-\subsection{Parameters}{\itemize{
-\item{\code{packages} Character vector of package names.}
-}}}
+\item{\code{installModulePackages()}}{Install and load all required libraries.
+\subsection{Return Value}{TRUE}}
 
-\item{\code{run()}}{Main application function.
+\item{\code{prepareTaggedFiles()}}{When supplied a list of tags, select input files with the given tags and prepare the 
+most recent file of those into a /user/ folder
+\subsection{Parameters}{\itemize{
+\item{\code{packages} Character vector of tag names.}
+}}
+\subsection{Return value}{TRUE}}
+
+\item{\code{run()}}{Main application function, this should be overriden in child class.
 \subsection{Return Value}{NULL}}
 
 \item{\code{silence(command)}}{Silence all but error output from a command.
