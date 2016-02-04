@@ -100,7 +100,6 @@ RTransformation <- setRefClass(
                 stop("Transformation script seems to be empty.")
             }
             
-            print(configData$parameters$tags)
             if (empty(configData$parameters$tags)) {
                 tags <<- character()
             } else {
@@ -149,7 +148,6 @@ RTransformation <- setRefClass(
                 } else {
                     # remove .manifest suffix
                     fileName = substr(file, start = 0, stop = nchar(file) - 9)
-                    print(paste0("file: ", fileName))
                     file.copy(file.path(.self$dataDir, 'in', 'files', fileName), 
                             file.path(.self$dataDir, 'in', 'user', tag))
                     file.copy(file.path(.self$dataDir, 'in', 'files', paste0(fileName, '.manifest')), 
@@ -169,7 +167,6 @@ RTransformation <- setRefClass(
             
             # save the script to file
             scriptFile = file.path(dataDir, 'script.R')
-            .self$logInfo(paste0("Creating script: ", scriptFile))
             write(file = scriptFile, x = scriptContent)
             # set data directory as current directory, so that relative paths in transformation work
             setwd(.self$dataDir)
