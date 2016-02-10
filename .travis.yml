@@ -10,7 +10,6 @@ r_github_packages:
  - keboola/r-docker-application
 
 before_install:
- - curl -SL "http://curl.haxx.se/ca/cacert.pem" -o /usr/cacert.pem
  - export KBC_DATA_DIR=$TRAVIS_BUILD_DIR/tests/data/
 
 notifications:
