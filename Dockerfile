@@ -1,4 +1,4 @@
-FROM quay.io/keboola/docker-base-r-packages:3.2.5-a
+FROM quay.io/keboola/docker-base-r-packages:3.2.5-b
 MAINTAINER Ondrej Popelka <ondrej.popelka@keboola.com>
 
 WORKDIR /home
