@@ -1,5 +1,9 @@
 library('devtools')
 
+ options(
+    browserNLdisabled = TRUE,
+    deparse.max.lines = 2)
+
 # install the transformation application ancestors
 devtools::install_github('keboola/r-application', ref = "master", force = TRUE)
 devtools::install_github('keboola/r-docker-application', ref = "master", force = TRUE)
@@ -57,8 +61,10 @@ print(ip, row.names=FALSE)
             }
             if (vexpr$visible) vexpr$value else invisible(vexpr$value)
     }
+
+devtools::install_local('.') 
     
-    wrapTryCatch({    
-devtools::install('.') 
-})
+#    wrapTryCatch({    
+#devtools::install_local('.') 
+#})
     
