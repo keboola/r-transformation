@@ -62,8 +62,8 @@ print(ip, row.names=FALSE)
             if (vexpr$visible) vexpr$value else invisible(vexpr$value)
     }
 
-devtools::install_local('.') 
-    
+#devtools::install_local('.') 
+devtools::install(pkg = ".", reload = FALSE, local = TRUE)
 #    wrapTryCatch({    
 #devtools::install_local('.') 
 #})
