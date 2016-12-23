@@ -1,5 +1,4 @@
-FROM quay.io/keboola/docker-base-r-packages:3.2.5-e
-MAINTAINER Ondrej Popelka <ondrej.popelka@keboola.com>
+FROM quay.io/keboola/docker-base-r-packages:3.3.2-a
 
 WORKDIR /home
 
@@ -15,4 +14,3 @@ RUN R CMD INSTALL keboola.r.transformation_*
 
 # Run the application
 ENTRYPOINT Rscript ./main.R /data/
-
