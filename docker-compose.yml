@@ -1,0 +1,10 @@
+version: '2'
+services:
+  r-transformation:
+    build: .
+    image: keboola/r-transformation
+    tty: true
+    stdin_open: true
+    command: bash
+    volumes:
+      - ./:/code
