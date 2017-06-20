@@ -147,7 +147,7 @@ RTransformation <- setRefClass(
                     stop(paste0("No files were found for tag: ", tag))
                 } else {
                     # remove .manifest suffix
-                    fileName = substr(file, start = 0, stop = nchar(file) - 9)
+                    fileName = substr(lastManifest, start = 0, stop = nchar(lastManifest) - 9)
                     file.copy(file.path(.self$dataDir, 'in', 'files', fileName), 
                             file.path(.self$dataDir, 'in', 'user', tag))
                     file.copy(file.path(.self$dataDir, 'in', 'files', paste0(fileName, '.manifest')), 

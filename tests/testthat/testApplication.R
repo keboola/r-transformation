@@ -30,3 +30,15 @@ test_that("package error", {
         'Failed to install packages: some-non-existent-package'
     )
 })
+
+test_that("tagged files 2", {
+    app <- RTransformation$new(file.path(KBC_DATA_DIR, '04'))
+    app$readConfig()
+    app$run()
+    
+    expect_true(file.exists(file.path(KBC_DATA_DIR, '04', 'in', 'user', 'first')))
+    expect_true(file.exists(file.path(KBC_DATA_DIR, '04', 'in', 'user', 'second')))
+    expect_true(file.exists(file.path(KBC_DATA_DIR, '04', 'in', 'user', 'third')))
+    data <- read.csv(file.path(KBC_DATA_DIR, '04', 'out', 'tables', 'sample.csv'))
+    expect_equal('firstsecondthird', data[['x']])
+})

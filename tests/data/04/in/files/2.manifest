@@ -1,0 +1,12 @@
+{
+    "id": 289886265,
+    "name": "2.txt",
+    "created": "2017-06-19T12:49:39+0200",
+    "is_public": false,
+    "is_encrypted": true,
+    "tags": [
+        "SecondTag"
+    ],
+    "max_age_days": 180,
+    "size_bytes": 6
+}

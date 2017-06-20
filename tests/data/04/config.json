@@ -1,0 +1,29 @@
+{
+    "storage": {
+        "output": {
+            "tables": {
+                "0": {
+                    "source": "sample.csv",
+                    "destination": "out.c-main.data"
+                }
+            }
+        }
+    },
+    "parameters": {
+        "packages": [],
+        "tags": ["FirstTag", "SecondTag", "ThirdTag"],
+        "script": [
+            "file <- file.path('in', 'user', 'FirstTag')",
+            "first <- readChar(file, file.info(file)$size)",
+            "print(paste0('First:', first))",
+            "file <- file.path('in', 'user', 'SecondTag')",
+            "second <- readChar(file, file.info(file)$size)",
+            "print(paste0('Second:', second))",
+            "file <- file.path('in', 'user', 'ThirdTag')",
+            "third <- readChar(file, file.info(file)$size)",
+            "print(paste0('Third:', third))",
+            "result <- paste0(first, second, third)",
+            "write.csv(result, file = 'out/tables/sample.csv', row.names = FALSE)"
+        ]
+    }
+}
