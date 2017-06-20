@@ -36,9 +36,9 @@ test_that("tagged files 2", {
     app$readConfig()
     app$run()
     
-    expect_true(file.exists(file.path(KBC_DATA_DIR, '04', 'in', 'user', 'first')))
-    expect_true(file.exists(file.path(KBC_DATA_DIR, '04', 'in', 'user', 'second')))
-    expect_true(file.exists(file.path(KBC_DATA_DIR, '04', 'in', 'user', 'third')))
-    data <- read.csv(file.path(KBC_DATA_DIR, '04', 'out', 'tables', 'sample.csv'))
+    expect_true(file.exists(file.path(KBC_DATA_DIR, '04', 'in', 'user', 'FirstTag')))
+    expect_true(file.exists(file.path(KBC_DATA_DIR, '04', 'in', 'user', 'SecondTag')))
+    expect_true(file.exists(file.path(KBC_DATA_DIR, '04', 'in', 'user', 'ThirdTag')))
+    data <- read.csv(file.path(KBC_DATA_DIR, '04', 'out', 'tables', 'sample.csv'), stringsAsFactors = FALSE)
     expect_equal('firstsecondthird', data[['x']])
 })
