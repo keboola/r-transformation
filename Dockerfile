@@ -1,4 +1,4 @@
-FROM quay.io/keboola/docker-base-r-packages:3.3.2-a
+FROM quay.io/keboola/docker-custom-r:1.4.0
 
 WORKDIR /home
 
