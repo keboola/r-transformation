@@ -4,16 +4,17 @@ services:
 - docker
 before_script:
 - docker-compose build r-transformation
-script: docker-compose run --rm --entrypoint sh -e KBC_DATA_DIR=/code/tests/data/ r-transformation /code/run_tests.sh
+script: docker-compose run --rm --entrypoint sh -e KBC_DATA_DIR=/code/tests/data/
+  r-transformation /code/run_tests.sh
 after_success:
 - docker images
 deploy:
   provider: script
   skip_cleanup: true
-  script: ./deploy.sh
+  script: "./deploy.sh"
   on:
     tags: true
 notification:
   slack:
     rooms:
-      secure: zj5FfUTsdWVS2ZyBVoQTkifG02J+BY8A5CslLUO/w6JJwHjNUTT1mX50GwdXz/O7vN8HSJs3Vk/L/9LceeMVd0d0NnsitsiCtqc2wwwNAXH4YhZadfnMYZAPpGL3AVWLayVsbtmqsYQs8VnwHPvfBFAI6k67fGFxTpBLmLMT5GMTeR0EflxzCHqb5Sj30yNy24M1gUcfnGch0ycgR/H250CwRcx4WaqoX2+LxbD8C45rBOylU0VM8ynyR1bzR4DdzwQsOITtwnzLzEtgpwQ8wEl8XJg/BQtXN/uGLrpDQRjKm0AW1e53tooHxsuI159CaygjXoTbGXgBkXdC5A2CJK+jKvDR2pdnRP7JCxtX1BQNJ7OlnZTm+GrVluHHpUQXsOSTdJytkztZYKrUHvXyHsnI5Lfr9DHSR62Oh6mjR0cXhHoRTQkvQ64qsy4TphEXievvlfXDRL+K97hwuwoIImjUVsbxuxN8ifc1F7UmSebioU1D9JlhET2ynEb17UsJ3IHJe4z8zf9asGvf26mo0QNEGR5ha5MLLeteNEtTIcdxcWxDl4XAFclLTbnq5j3f2gfY6xuNdR1yGCt7QKe4lv0LCLwtwb98tqKO+JWCvNy0iuZp8bSsa/N+nHl1hHS9fhiwlrht4DvC8s9SA6+PpondDH3JUTOseTsZi19Zq+Y=
+      secure: VacqAfzaMCT5KYFzeXx6zNeq+QYrkpPYKwkU7A+c8eSY3yWcZ1DMnEQ1eOmogGYoq5LNQTsvyo7KfgD3UZWB1/AH2BnbGE/6fq1Gg7/HkE8J2jMjUiRQiIU6ojDM4AC2FodKAdf1mWQ6xOeLvvs8SHSiGY4ZRFu9+sdn4gLK7wu2QNwEDTCIWbnRN8WtAcNHO0JTqXR4vO6ntmDScaQ++Ln0KWHVrjp5VD8VLy0LIdBgNdCMJNe5UwzcBg970tTY4v7dpb1k9T15/SF+j2WewywdZJbrZ60WXkveGR41gwPhpv4xuBVcYWk55rd6ymyoGsR24SM9XjwloEQB62p5Ta2yoy5Pg+0YLZsFPLArrHWCQ/fiux+VER7ThWuc0rnJcjW5Ywf5YbEZ2HOi3mwbzmb/6rCGyn2Ors9NVrAs0bQPVt9/5NLH2f41K1DMPzNqq80/GmgFpfJgJuX8neAYUMoKbhz5cIGstuzvDikZhDbD3UUMkqPCZzJpHbleaM75qawq/6iyhQWfiV88lthTbGbHbIGU0Qii+p5dYlWpqZy9TwEuGhwIq8QwoHdOHUwepSN7GnvBMY9lspoaeI8kVRMsV8SRbrNT7hjXu+WQu/tgP9aPoNxm/e3GXk5RadIOQZ6SE8OwLc/EbI8TjAJOygkrE83QuxecFpvPceocp+0=
