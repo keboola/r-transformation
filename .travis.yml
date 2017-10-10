@@ -1,17 +1,19 @@
 sudo: required
 language: bash
 services:
-  - docker
+- docker
 before_script:
-  - docker-compose build r-transformation
+- docker-compose build r-transformation
 script: docker-compose run --rm --entrypoint sh -e KBC_DATA_DIR=/code/tests/data/ r-transformation /code/run_tests.sh
 after_success:
-  - docker images
+- docker images
 deploy:
   provider: script
   skip_cleanup: true
   script: ./deploy.sh
   on:
-    tags: true  
-notifications:
-  slack: keboola:eoqvo0RDzLRDPytuVEHRJNOc
+    tags: true
+notification:
+  slack:
+    rooms:
+      secure: zj5FfUTsdWVS2ZyBVoQTkifG02J+BY8A5CslLUO/w6JJwHjNUTT1mX50GwdXz/O7vN8HSJs3Vk/L/9LceeMVd0d0NnsitsiCtqc2wwwNAXH4YhZadfnMYZAPpGL3AVWLayVsbtmqsYQs8VnwHPvfBFAI6k67fGFxTpBLmLMT5GMTeR0EflxzCHqb5Sj30yNy24M1gUcfnGch0ycgR/H250CwRcx4WaqoX2+LxbD8C45rBOylU0VM8ynyR1bzR4DdzwQsOITtwnzLzEtgpwQ8wEl8XJg/BQtXN/uGLrpDQRjKm0AW1e53tooHxsuI159CaygjXoTbGXgBkXdC5A2CJK+jKvDR2pdnRP7JCxtX1BQNJ7OlnZTm+GrVluHHpUQXsOSTdJytkztZYKrUHvXyHsnI5Lfr9DHSR62Oh6mjR0cXhHoRTQkvQ64qsy4TphEXievvlfXDRL+K97hwuwoIImjUVsbxuxN8ifc1F7UmSebioU1D9JlhET2ynEb17UsJ3IHJe4z8zf9asGvf26mo0QNEGR5ha5MLLeteNEtTIcdxcWxDl4XAFclLTbnq5j3f2gfY6xuNdR1yGCt7QKe4lv0LCLwtwb98tqKO+JWCvNy0iuZp8bSsa/N+nHl1hHS9fhiwlrht4DvC8s9SA6+PpondDH3JUTOseTsZi19Zq+Y=
