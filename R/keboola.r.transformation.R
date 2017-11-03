@@ -93,11 +93,11 @@ RTransformation <- setRefClass(
             scr <- configData$parameters$script
             if (length(scr) > 1)  {
                 scriptContent <<- paste(scr, collapse = "\n")
-            } else {
+            } else if (length(scr) > 0) {
                 scriptContent <<- scr
             }
             if (empty(scriptContent)) {
-                stop("Transformation script seems to be empty.")
+                stop("Transformation script is empty.")
             }
             
             if (empty(configData$parameters$tags)) {

@@ -2,8 +2,8 @@
 % Please edit documentation in R/keboola.r.transformation.R
 \docType{class}
 \name{RTransformation-class}
-\alias{RTransformation}
 \alias{RTransformation-class}
+\alias{RTransformation}
 \title{Application which runs KBC transformations in R}
 \description{
 Application which runs KBC transformations in R
@@ -14,7 +14,7 @@ Application which runs KBC transformations in R
 \item{\code{initialize(args = NULL)}}{Constructor.
 \subsection{Parameters}{\itemize{
 \item{\code{args} Optional name of data directory, if not supplied then it
-will be read from command line argument or environment KBC_DATA_DIR.}
+will be read from command line argument or environment KBC_DATADIR.}
 }}
 \subsection{Return Value}{Response body - either list or string in case the body cannot be parsed as JSON.}}
 

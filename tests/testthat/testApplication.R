@@ -35,10 +35,19 @@ test_that("tagged files 2", {
     app <- RTransformation$new(file.path(KBC_DATA_DIR, '04'))
     app$readConfig()
     app$run()
-    
+
     expect_true(file.exists(file.path(KBC_DATA_DIR, '04', 'in', 'user', 'FirstTag')))
     expect_true(file.exists(file.path(KBC_DATA_DIR, '04', 'in', 'user', 'SecondTag')))
     expect_true(file.exists(file.path(KBC_DATA_DIR, '04', 'in', 'user', 'ThirdTag')))
     data <- read.csv(file.path(KBC_DATA_DIR, '04', 'out', 'tables', 'sample.csv'), stringsAsFactors = FALSE)
     expect_equal('firstsecondthird', data[['x']])
+})
+
+test_that("empty configuration", {
+    app <- RTransformation$new(file.path(KBC_DATA_DIR, '05'))
+    app$readConfig()
+    expect_error(
+        app$run(), 
+        'Transformation script is empty.'
+    )
 })

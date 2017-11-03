@@ -12,4 +12,4 @@ Suggests:
     testthat
 Description: Runs KBC transformations written in R.
 License: MIT + file LICENSE
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
