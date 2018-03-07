@@ -59,7 +59,25 @@ RTransformation <- setRefClass(
                         # we assume that those packages failed to install.
                         packagesToInstall <- .self$packages[which(!(.self$packages %in% rownames(installed.packages())))]
                         if (length(packagesToInstall) > 0) {
-                            stop(paste0("Failed to install packages: ", paste(packagesToInstall, collapse = ", ")))
+                            # if the packages failed to install, let's try it again with a different CRAN repository
+                            # by default we rely on MRAN, but if that has an outage, there is no reasonable way to 
+                            # try an other mirror, so that's what we're doing
+                            .self$silence(
+                                install.packages(
+                                    pkgs = packagesToInstall, 
+                                    quiet = TRUE, 
+                                    verbose = FALSE,
+                                    repos = "https://cloud.r-project.org",
+                                    dependencies = c("Depends", "Imports", "LinkingTo"), 
+                                    INSTALL_opts = c("--no-html")
+                                )
+                            )                            
+                            packagesToInstall <- .self$packages[which(!(.self$packages %in% rownames(installed.packages())))]
+                            if (length(packagesToInstall) > 0) {
+                                # we still have some packages to install, it probably failed for good
+                                # give up
+                                stop(paste0("Failed to install packages: ", paste(packagesToInstall, collapse = ", ")))
+                            }
                         }
                     }
                     # load all packages

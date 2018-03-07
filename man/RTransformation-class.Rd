@@ -28,8 +28,8 @@ most recent file of those into a /user/ folder
 }}
 \subsection{Return value}{TRUE}}
 
-\item{\code{run()}}{Main application function, this should be overriden in child class.
-\subsection{Return Value}{NULL}}
+\item{\code{run()}}{Main application entry point.
+\subsection{Return Value}{TRUE}}
 
 \item{\code{silence(command)}}{Silence all but error output from a command.
 \subsection{Parameters}{\itemize{
