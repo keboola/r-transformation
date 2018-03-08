@@ -1,12 +1,9 @@
-FROM quay.io/keboola/docker-custom-r:1.6.0
+FROM quay.io/keboola/docker-custom-r:1.7.0
 
 WORKDIR /home
 
 # Initialize the transformation runner
 COPY . /home/
-
-# Install some commonly used R packages and the R application
-RUN Rscript ./init.R
 
 # Install the r-transformation package which is in the local directory
 RUN R CMD build .
