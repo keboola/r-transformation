@@ -1,6 +1,6 @@
 # R Docker Transformations
 
-[![Build Status](https://travis-ci.org/keboola/r-transformation.svg?branch=master)](https://travis-ci.org/keboola/r-transformation)
+[![Build Status](https://travis-ci.com/keboola/r-transformation.svg?branch=master)](https://travis-ci.com/keboola/r-transformation)
 
 Application which runs KBC transformations writen in R, interface is provided by [docker-bundle](https://github.com/keboola/docker-bundle).
 
