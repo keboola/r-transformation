@@ -11,3 +11,7 @@ library('devtools')
 install_github('keboola/r-transformation', ref = 'master')
 ```
 
+
+## License
+
+MIT licensed, see [LICENSE](./LICENSE) file.
